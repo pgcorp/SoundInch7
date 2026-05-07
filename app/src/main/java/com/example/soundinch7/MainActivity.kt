@@ -10,8 +10,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.soundinch7.ui.navigation.SoundInNavGraph
 import com.example.soundinch7.ui.screens.LoginScreen
-import com.example.soundinch7.ui.screens.RegisterScreen
 import com.example.soundinch7.ui.theme.SoundInch7Theme
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +25,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
-                   // LoginScreen ( onNavigateToRegister = {} )
-                    RegisterScreen ( onNavigateToLogin = {} )
-                } // end of
+                   val navController = rememberNavController()
+                    SoundInNavGraph(navController = navController)
+                }
             }
         }
     }
@@ -40,7 +41,8 @@ fun SoundInchPreview(){
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            LoginScreen ( onNavigateToRegister = {} )
+            LoginScreen ( onNavigateToRegister = {},
+                onLoginSuccess = {})
         } // end of surface
 
     }

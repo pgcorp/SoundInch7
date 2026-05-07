@@ -397,7 +397,7 @@ fun RegisterScreen(
 @Preview(showBackground = true)
 @Composable
 fun RegisterContentPreview() {
-    SoundInch7Theme() {}
+    SoundInch7Theme {}
 }
 
 @Preview(showBackground = true)

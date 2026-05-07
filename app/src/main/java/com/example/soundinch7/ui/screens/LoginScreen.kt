@@ -23,7 +23,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
@@ -49,7 +48,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.soundinch7.ui.LoginViewModel
 import com.example.soundinch7.ui.theme.SoundInch7Theme
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -165,7 +163,7 @@ fun LoginContent(
         TextButton(
             onClick = onNavigateToRegister
         ) {
-            Text("Dont have an account? Register")
+            Text("Don't have an account? Register")
         }
 
     } // end of column
@@ -175,7 +173,8 @@ fun LoginContent(
 @Composable
 fun LoginScreen(
     viewModel : LoginViewModel = viewModel(),
-    onNavigateToRegister: () -> Unit
+    onNavigateToRegister: () -> Unit,
+    onLoginSuccess: () -> Unit
 ){
     val snackbarHostState = remember { SnackbarHostState () }
     val scope = rememberCoroutineScope()
@@ -219,6 +218,8 @@ fun LoginScreen(
                         snackbarHostState.showSnackbar(
                             message = "Welcome to SoundIn"
                         )
+                        onLoginSuccess()
+
                     }else {
                         snackbarHostState.showSnackbar(
                             message = "Please review the marked fields"
